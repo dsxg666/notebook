@@ -1,0 +1,67 @@
+{{define "show/category.html"}}
+    <!doctype html>
+    <html lang="zh-CN">
+
+    <head>
+        <title>dsxg笔记本 - {{.categoryS}}分类</title>
+        {{template "public/css.html"}}
+    </head>
+    <body>
+    {{template "public/loading.html"}}
+    {{template "public/navigation.html"}}
+    <!-- Categorie -->
+    <section class="categorie-section-big">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="categorie-title">
+                        <small>
+                            <a href="/">Home</a>
+                            <span class="arrow_carrot-right"></span>{{.categoryB}}
+                        </small>
+                        <h3>分类：<span>{{.categoryS}}</span></h3>
+                        <p>{{.intro}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog -->
+    <section class="mb-70">
+        <div class="container">
+            <div class="row">
+                {{range $key, $value := .arr}}
+                    <div class="col-lg-6">
+                        <div class="post-box">
+                            <div class="image">
+                                <a><img src="/static/img/blog/{{$value.Id}}.jpg" alt=""></a>
+                            </div>
+                            <div class="content">
+                                <a class="categorie"><i class="icon_circle-slelected"></i>{{$value.Category}}</a>
+                                <h5>
+                                    <a href="/article/{{$value.Id}}">{{$value.Title}}</a>
+                                </h5>
+                                <div class="meta">
+                                    <ul class="list-inline">
+                                        <li>上次修改 {{$value.Time}}</li>
+                                        <li class="dot"></li>
+                                        <li>浏览量 {{$value.Click}}</li>
+                                        <li class="dot"></li>
+                                        <li>笔记ID {{$value.Id}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{end}}
+            </div>
+        </div>
+    </section>
+
+    {{template "public/botton.html"}}
+    {{template "public/search.html"}}
+    {{template "public/js.html"}}
+    </body>
+
+    </html>
+{{end}}

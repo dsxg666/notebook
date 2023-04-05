@@ -1,0 +1,20 @@
+{{define "public/search.html"}}
+    <!--Search-form-->
+    <div class="search">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-10 m-auto">
+                    <div class="search-width">
+                        <button type="button" class="close">
+                            <i class="far fa-times"></i>
+                        </button>
+                        <form class="search-form" action="/search" method="post">
+                            <input type="search" name="id" placeholder="请输入您要查找的笔记ID">
+                            <input type="submit" value="查找" class="search-btn" id="search">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{end}}

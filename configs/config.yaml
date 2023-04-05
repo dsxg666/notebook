@@ -1,0 +1,22 @@
+Server:
+  RunMode: release
+  HttpPort: 666
+  ReadTimeout: 60
+  WriteTimeout: 60
+Email:
+  Host: smtp.qq.com
+  Port: 465
+  UserName: xxx@qq.com
+  Password: xxx
+  IsSSL: true
+  From: xx@qq.com
+Database:
+  DBType: mysql
+  UserName: root
+  Password: xxx
+  Host: localhost:3306
+  DBName: myblog
+  Charset: utf8
+  ParseTime: True
+  MaxIdleConns: 50
+  MaxOpenConns: 50

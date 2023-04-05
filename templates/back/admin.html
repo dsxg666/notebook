@@ -1,0 +1,89 @@
+{{define "back/admin.html"}}
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <title>dsxg笔记本 - 管理</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    </head>
+    <body>
+    <form class="col-md-3" style="margin: 0 auto;margin-top: 100px">
+        <div class="form-group">
+            <label for="category">笔记分类：</label>
+            <input type="text" class="form-control addCategory">
+        </div>
+        <div class="form-group">
+            <label for="title">笔记标题：</label>
+            <input type="text" class="form-control addTitle">
+        </div>
+    </form>
+    <p style="text-align:center">
+        <button class="btn btn-info" id="addArticle">增加笔记</button>
+    </p>
+    <form class="col-md-3" style="margin: 0 auto" method="post" action="/editor">
+        <div class="form-group">
+            <label for="artidleId">笔记Id：</label>
+            <input type="text" class="form-control" name="id" id="artidleId">
+        </div>
+        <div class="form-group" style="text-align: center">
+            <input type="submit" class="btn btn-info" value="修改笔记">
+        </div>
+    </form><br>
+    <form class="col-md-3" style="margin: 0 auto">
+        <div class="form-group">
+            <input type="file" class="form-control picture">
+        </div>
+    </form>
+    <p style="text-align:center">
+        <button class="btn btn-info" id="sendPicture">上传图片</button>
+    </p>
+    <script src="/static/js/jquery-3.5.0.min.js"></script>
+    <script src="/static/js/message.js"></script>
+    <script>
+        document.getElementById("addArticle").onclick = function () {
+            let category = $(".addCategory").val();
+            let title = $(".addTitle").val();
+            $.ajax({
+                    url: "/addArticle",
+                    type: "POST",
+                    data: {
+                        "category": category,
+                        "title": title,
+                        "content": "wait a little, soon send the content!",
+                    },
+                    success: function (data) {
+                        $(".addCategory").val("");
+                        $(".addTitle").val("");
+                        $.message({
+                            message: '添加成功！',
+                            type: 'success'
+                        });
+                    },
+                }
+            )
+        }
+
+        document.getElementById("sendPicture").onclick = function () {
+            let file = $(".picture")[0].files[0];
+            let form_data = new FormData();
+            form_data.append("file", file);
+            $.ajax({
+                url: "/sendPicture",
+                type: "POST",
+                data: form_data,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    $.message({
+                        message: '上传成功',
+                        type: 'success'
+                    });
+                },
+            })
+        }
+    </script>
+    </body>
+    </html>
+{{end}}

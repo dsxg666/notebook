@@ -1,0 +1,135 @@
+{{define "show/home.html"}}
+    <!doctype html>
+    <html lang="zh-CN">
+    <head>
+        <!-- Title -->
+        <title>dsxg笔记本</title>
+        {{template "public/css.html"}}
+        <style>
+            .list-inline li a {
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+    {{template "public/loading.html"}}
+    {{template "public/navigation.html"}}
+    <!--Hero-->
+    <section class="hero hero-3 hero-carousel  hero-carousel-3 d-flex align-items-center">
+        <div class="container">
+            <div class="owl-carousel">
+                <div class="row d-flex align-items-center">
+                    <div class="col-lg-7 b-order-2">
+                        <div class="post">
+                            <a class="categorie">
+                                <i class="icon_circle-slelected"></i>技术类
+                            </a>
+                            <h3>
+                                <a href="#">计算机技术改变世界！</a>
+                            </h3>
+                            <p>计算机科学是推动世界发展的技术、生产力和创新引擎，其思维方式、问题解决方式和创造方式极大地改变了我们的世界。学习和掌握计算机知识，将成为人们的基本技能！</p>
+                            <div class="info">
+                                <ul class="list-inline">
+                                    <li><a href="/category/1">Golang</a></li>
+                                    <li class="dot"></li>
+                                    <li><a href="/category/2">Blockchain</a></li>
+                                    <li class="dot"></li>
+                                    <li><a href="/category/3">Linux</a></li>
+                                    <li class="dot"></li>
+                                    <li><a href="/category/9">ComputerBasis</a></li>
+                                    <li class="dot"></li>
+                                    <li><a href="/category/10">OtherTechnology</a></li>
+                                </ul>
+                                <ul class="list-inline">
+                                    <li><a href="/category/8">Frontend</a></li>
+                                    <li class="dot"></li>
+                                    <li><a href="/category/11">Java</a></li>
+                                    <li class="dot"></li>
+                                    <li><a href="/category/12">Python</a></li>
+                                    <li class="dot"></li>
+                                    <li><a href="/category/13">C Language</a></li>
+                                    <li class="dot"></li>
+                                    <li><a href="/category/14">Android</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 b-order-1">
+                        <div class="image">
+                            <a href="#">
+                                <img src="/static/img/category/1.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex align-items-center">
+                    <div class="col-lg-7 b-order-2">
+                        <div class="post">
+                            <a class="categorie"><i class="icon_circle-slelected"></i>生活类</a>
+                            <h3><a href="#">生活才是人生的主旋律！</a></h3>
+                            <p>
+                                生活是一首歌，吟唱着人生的节奏和旋律；生活是一条路，延伸着人生的足迹和希望；生活是一杯酒，饱含着人生的清醇与忧愁；生活是一团麻，交织着人生的烦恼与快乐；生活是一幅画，描绘着人生经历的红绿蓝；生活是一团火，燃烧着人生的憧憬和梦想。</p>
+                            <div class="info">
+                                <ul class="list-inline">
+                                    <li><a href="/category/4">旅游</a></li>
+                                    <li class="dot"></li>
+                                    <li><a href="/category/5">我的文章</a></li>
+                                    <li class="dot"></li>
+                                    <li><a href="/category/6">我是大画家</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 b-order-1">
+                        <div class="image">
+                            <a href="#">
+                                <img src="/static/img/category/2.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex align-items-center">
+                    <div class="col-lg-7 b-order-2">
+                        <div class="post">
+                            <a class="categorie">
+                                <i class="icon_circle-slelected"></i>文学类
+                            </a>
+                            <h3>
+                                <a href="#">文学，让我们体会不同的人生，认清生活的真相。</a>
+                            </h3>
+                            <p>
+                                文学是世界文明的瑰宝、是世界的触角，它把人间颠倒拼合，把无数个不相交的空间折叠在一起，把短暂的人生延展开来、向深挖掘。读文学，就是把世界扒开来，去细读它的每一道纹理，给人以美的享受。</p>
+                            <div class="info">
+                                <ul class="list-inline">
+                                    <li><a href="/category/7">文学</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 b-order-1">
+                        <div class="image">
+                            <a href="#">
+                                <img src="/static/img/category/3.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{template "public/botton.html"}}
+    {{template "public/search.html"}}
+    {{template "public/js.html"}}
+    <script src="/static/js/message.js"></script>
+    <script>
+        let err = {{.err}};
+        if (err === "err") {
+            $.message({
+                message: '亲，未查找到ID对应的笔记哦！',
+                type: 'error'
+            });
+        }
+    </script>
+    </body>
+    </html>
+{{end}}

@@ -1,0 +1,129 @@
+{{define "show/contact.html"}}
+    <!doctype html>
+    <html lang="zh-CN">
+
+    <head>
+        <title>dsxg笔记本 - 联系我</title>
+        {{template "public/css.html"}}
+    </head>
+    <body>
+    {{template "public/loading.html"}}
+    {{template "public/navigation.html"}}
+
+    <!--title-->
+    <section class="categorie-section-big">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 m-auto">
+                    <div class="categorie-title text-center">
+                        <h3>联系我</h3>
+                        <small>
+                            <a href="/">首页</a>
+                            <span class="arrow_carrot-right"></span> 联系我
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--contact-->
+    <section class="contact mb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="contact-info">
+                        <h5>向我表述</h5>
+                        <p>如果我的笔记有错别字、代码错误等一切问题，请通过填写表格反馈给我，非常感谢！😘</p>
+                        <div class="item">
+                            <div class="icon">
+                                <i class="icon_pin"></i>
+                            </div>
+                            <p>江西 - 萍乡</p>
+                        </div>
+                        <div class="item">
+                            <div class="icon">
+                                <i class="icon_mail_alt"></i>
+                            </div>
+                            <p>1873887255@qq.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <form action="/" class="form contact_form " method="POST" id="main_contact_form">
+                        <div class="form-group">
+                            <input type="text" id="name" class="form-control" placeholder="昵称"
+                                   required="required">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" id="email" class="form-control" placeholder="联系邮箱"
+                                   required="required">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" id="subject" class="form-control" placeholder="主题"
+                                   required="required">
+                        </div>
+
+                        <div class="form-group">
+                            <textarea id="message" cols="30" rows="5" class="form-control"
+                                      placeholder="内容" required="required"></textarea>
+                        </div>
+                    </form>
+                    <button class="btn-custom" id="sendMsg">
+                        发送
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{template "public/botton.html"}}
+    {{template "public/search.html"}}
+    {{template "public/js.html"}}
+    <script src="/static/js/message.js"></script>
+    <script>
+        document.getElementById("sendMsg").onclick = function () {
+            let email = $("#email").val();
+            if (isAvailable(email)) {
+                let name = $("#name").val();
+                let subject = $("#subject").val();
+                let content = $("#message").val();
+                $.ajax({
+                        url: "/sendMsg",
+                        type: "POST",
+                        data: {
+                            "content": content,
+                            "subject": subject,
+                            "email": email,
+                            "name": name,
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            $("#subject").val("");
+                            $("#message").val("");
+                            $("#email").val("");
+                            $("#name").val("");
+                            $.message({
+                                message: '发送成功',
+                                type: 'success'
+                            });
+                        },
+                    }
+                )
+            } else {
+                $.message({
+                    message: '邮箱格式错误！',
+                    type: 'error'
+                });
+            }
+        }
+
+        function isAvailable(str) {
+            let myreg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+            return myreg.test(str);
+        }
+    </script>
+    </body>
+    </html>
+{{end}}

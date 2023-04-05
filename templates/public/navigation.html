@@ -1,0 +1,92 @@
+{{define "public/navigation.html"}}
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <!--logo-->
+            <div class="logo">
+                <a href="/"><img src="/static/img/logo.png" alt=""></a>
+            </div>
+            <!--navbar-collapse-->
+            <div class="collapse navbar-collapse" id="main_nav">
+                <ul class="navbar-nav ml-auto mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">首页</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="" data-toggle="dropdown">技术类Ⅰ</a>
+                        <ul class="dropdown-menu fade-up">
+                            <li>
+                                <a class="dropdown-item" href="/category/1">Golang</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/category/2">Blockchain</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/category/3">Linux</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/category/9">ComputerBasis</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/category/10">OtherTechnology</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="" data-toggle="dropdown">技术类Ⅱ</a>
+                        <ul class="dropdown-menu fade-up">
+                            <li>
+                                <a class="dropdown-item" href="/category/8">Frontend</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/category/11">Java</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/category/12">Python</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/category/13">C Language</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/category/14">Android</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle " href="" data-toggle="dropdown">生活类</a>
+                        <ul class="dropdown-menu fade-up">
+                            <li>
+                                <a class="dropdown-item" href="/category/4">旅游</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/category/5">我的文章</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/category/6">我是大画家</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/category/7">文学类</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/intro">个人简介</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">联系我</a>
+                    </li>
+                </ul>
+            </div>
+            <!--navbar-right-->
+            <div class="navbar-right ml-auto">
+                <div class="search-icon">
+                    <i class="far fa-search"></i>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+{{end}}

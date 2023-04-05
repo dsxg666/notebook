@@ -1,0 +1,1 @@
+create table article(    id       int auto_increment primary key,    title    varchar(20) null,    category varchar(20) null,    content  longtext null,    time     date not null,    click    int default 0 null);

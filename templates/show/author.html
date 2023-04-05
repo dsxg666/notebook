@@ -1,0 +1,39 @@
+{{define "show/author.html"}}
+    <!doctype html>
+    <html lang="zh-CN">
+
+    <head>
+        <title>dsxg笔记本 - 个人简介</title>
+        {{template "public/css.html"}}
+    </head>
+
+    <body>
+    {{template "public/loading.html"}}
+    {{template "public/navigation.html"}}
+
+    <!--author-->
+    <section class="mt-90 mb-50 pt-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 m-auto">
+                    <div class="author">
+                        <div class="image">
+                            <img src="/static/img/tx.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <h5>Hi, I'm Felix Xie.</h5><br>
+                            <div class="link">欢迎观看我的网站，一颗💖送给你。😁</div><br>
+                            <p>越自律就越自由，越充实就越幸福，趁一切都还来得及！</p>
+                            <p>我是软件工作者，主攻区块链技术，梦想成为一名架构师。该网站主要用来记录和分享自己学习过程中的笔记和知识，希望对你有帮助。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{template "public/botton.html"}}
+    {{template "public/search.html"}}
+    {{template "public/js.html"}}
+    </body>
+    </html>
+{{end}}

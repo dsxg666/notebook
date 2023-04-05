@@ -1,0 +1,161 @@
+{{define "show/article.html"}}
+    <!doctype html>
+    <html lang="zh-CN">
+    <head>
+        <title>dsxg笔记本 - {{.article.Title}}</title>
+        {{template "public/css.html"}}
+        <link rel="stylesheet" href="/static/lib/editormd/css/editormd.css"/>
+        <style>
+            .article {
+                background-color: #ffffff;
+                box-shadow: 0 0 10px 1px #aaa;
+                border-radius: 3px;
+                padding: 35px;
+                display: block;
+                margin-left: 1px;
+            }
+
+            #doc-content p img {
+                display: block;
+                position: relative;
+                margin: auto;
+            }
+
+            #doc-content ul li {
+                list-style-type: disc !important;
+            }
+
+            #doc-content ol li {
+                list-style-type: decimal !important;
+            }
+	    #articleNavigation {
+                position: fixed;
+		height: 800px;
+                overflow: auto;
+                margin-left: 1535px;
+                margin-top: 20px;
+		color: black;
+            }
+        </style>
+    </head>
+    <body>
+    {{template "public/loading.html"}}
+    {{template "public/navigation.html"}}
+    <div id="articleNavigation">
+        <ul id="titleList">
+        </ul>
+    </div>
+    <!--post-single-top-->
+    <section class="post-single-top d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+            </div>
+        </div>
+    </section>
+
+    <!--post-single-->
+    <section class="post-single">
+        <div class="container">
+            <div class="row article" id="doc-content">
+                <textarea style="display:none;">{{.article.Content}}</textarea>
+            </div>
+        </div>
+    </section>
+    <br><br>
+    {{template "public/botton.html"}}
+    {{template "public/search.html"}}
+    {{template "public/js.html"}}
+    <script src="/static/lib/editormd/lib/flowchart.min.js"></script>
+    <script src="/static/lib/editormd/lib/jquery.flowchart.min.js"></script>
+    <script src="/static/lib/editormd/lib/marked.min.js"></script>
+    <script src="/static/lib/editormd/lib/prettify.min.js"></script>
+    <script src="/static/lib/editormd/lib/raphael.min.js"></script>
+    <script src="/static/lib/editormd/lib/sequence-diagram.min.js"></script>
+    <script src="/static/lib/editormd/lib/underscore.min.js"></script>
+    <script src="/static/lib/editormd/editormd.js"></script>
+    <script type="text/javascript">
+        var testEditor;
+        $(function () {
+            testEditor = editormd.markdownToHTML("doc-content", {//注意：这里是上面DIV的id
+                htmlDecode: "style,script,iframe",
+                emoji: true,
+                taskList: true,
+                tex: true, // 默认不解析
+                codeFold: true,
+            });
+        });
+	
+	window.onload = function () {
+            let data = document.getElementsByTagName("h3");
+            for (let i = 0; i < data.length - 1; i++) {
+                $("#titleList").append("<li><a href='#h3-" + toUnicode(data[i].innerText) + "'>" + data[i].innerText + "</a></li>")
+            }
+            $('a').click(function () {
+                var target = $(this).attr('href'); // target获取的是a标签里的链接
+                $('html, body').animate({
+                    scrollTop: $(target).offset().top - 100 // 100为设置的偏移值
+                }, 500);
+                return false;
+            });
+        }
+
+	function toUnicode(str) {
+        if (dsxgFunc(str) === 1) {
+            if (isChinese(str.charAt(0))) {
+                let unicode = '-';
+                for (let i = 0; i < str.length; i++) {
+                    if (str.charAt(i) >= 'a' && str.charAt(i) <= 'z' || str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') {
+                        unicode += str.charAt(i).toLowerCase();
+                    }
+                }
+                return unicode;
+            } else {
+                let unicode = '';
+                for (let i = 0; i < str.length; i++) {
+                    if (str.charAt(i) >= 'a' && str.charAt(i) <= 'z' || str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') {
+                        unicode += str.charAt(i).toLowerCase();
+                    }
+                }
+                unicode += '-'
+                return unicode;
+            }
+        } else if (dsxgFunc(str) === 2) {
+            return str.toLowerCase()
+        } else if (dsxgFunc(str) === 3) {
+            let unicode = '';
+            for (let i = 0; i < str.length; i++) {
+                let temp = str.charAt(i);
+                unicode += 'u' + temp.charCodeAt(0).toString(16).toUpperCase();
+            }
+            return unicode;
+        }
+    }
+
+    function dsxgFunc(str) {
+        let en = false;
+        let ch = false;
+        for (let i = 0; i < str.length; i++) {
+            if (str.charAt(i) >= 'a' && str.charAt(i) <= 'z' || str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') {
+                en = true
+            }
+            if (isChinese(str.charAt(i))) {
+                ch = true
+            }
+        }
+        if (en === true && ch === true) {
+            return 1
+        } else if (en === true && ch === false) {
+            return 2
+        } else if (en === false && ch === true) {
+            return 3
+        }
+    }
+
+    function isChinese(s) {
+        return /[\u4e00-\u9fa5]/.test(s);
+    }
+
+    </script>
+    </body>
+    </html>
+{{end}}
