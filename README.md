@@ -1,7 +1,3 @@
-### Running effect website
-
-www.dsxg.site
-
 ### Directory explanation
 
 * configs: contain configuration files.
